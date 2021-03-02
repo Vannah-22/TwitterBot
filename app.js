@@ -18,9 +18,9 @@ var params = {
 T.get('search/tweets', params, function(err, data, response) { // GET request, search tweets using the above params variable//
     // If there is no error, proceed //
     if(!err){
-        for(let i = 0; i < data.statuses.length; i++){ // Loop through the returned tweets
-            let id = { id: data.statuses[i].id_str } // Get the tweet Id from the returned data
-            T.post('favorites/create', id, function(err, response){// Try to Favorite the selected Tweet
+        for(let i = 0; i < data.statuses.length; i++){ // Loop through the returned tweets until we reached the end of the array length of data.statuses //
+            let id = { id: data.statuses[i].id_str } // INSIDE Get the tweet Id using "data.statuses[i].id_str" from the returned data //
+            T.post('favorites/create', id, function(err, response){// Try to Favorite the selected Tweet; Run a post request to 'like/favorite' a post, we passed out tweet Id and the request gave us a response //
             
                 if(err){// If the favorite fails, log the error message
                 console.log(err[0].message);
